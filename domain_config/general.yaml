@@ -1,0 +1,42 @@
+# 通用工程领域配置
+# 适用于阀门、机械、石油、化工等技术文档
+
+domain:
+  name: general
+  description: 通用工程领域
+
+# 专业术语白名单（AC 自动机标记用，留空则仅靠 LLM 提取）
+terminology: []
+
+# 实体类型白名单 —— 作为参考，LLM 可自主创建新类型
+entity_types:
+  - 设备/部件
+  - 材料
+  - 工艺/方法
+  - 参数/指标
+  - 介质/流体
+  - 功能/作用
+  - 标准/规范
+  - 现象/问题
+
+# 关系类型白名单
+relation_types:
+  mandatory:
+    - 属于
+    - 包含
+    - 组成
+    - 导致
+    - 影响
+    - 关联
+    - 等价
+    - 位于
+    - 需要
+    - 产生
+    - 控制
+    - 改变
+  allow_free: true
+
+# 消歧配置
+disambiguation:
+  coarse_similarity_threshold: 0.5
+  high_freq_ratio: 3.0

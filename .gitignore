@@ -1,0 +1,50 @@
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local knowledge, raw documents, checkpoints, logs and models
+extracted/
+data/
+output/
+log/
+logs/
+models/
+checkpoints/
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+
+# Local notes and legacy material (not part of the published release)
+技术路径说明书/
+立项需求书/
+test_project/
+_debug_*.txt
+*_text_output.txt
+new_docx_text.txt
+=2.0
+tests/local_demo_server.py
+tests/manual_*.py
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Frontend
+web/node_modules/
+web/dist/
+
+# Editors and agent state
+.vscode/
+.idea/
+.agents/
+.claude/
+.workbuddy/
+.DS_Store
+Thumbs.db

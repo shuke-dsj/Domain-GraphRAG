@@ -1,0 +1,55 @@
+# ============================================
+# GraphRAG 全局配置
+# 敏感信息（API Key、密码）写在 .env 文件中
+# ============================================
+
+# LLM 配置
+llm:
+  provider: deepseek           # 当前后端: deepseek（可扩展 openai 等）
+  base_url: https://api.deepseek.com
+  default_model: deepseek-v4-pro
+  temperature: 0.3
+  max_tokens: 32768
+
+# Neo4j 配置
+# - 原生向量索引可用性取决于 Neo4j 版本和配置；不可用时尝试内存向量检索
+neo4j:
+  uri: bolt://localhost:7687
+  database: neo4j
+  graph: petroleum                  # 图名（社区版用于隔离不同知识库）
+
+# 路径配置
+paths:
+  data_dir: data
+  output_dir: output
+  extracted_dir: extracted
+  domain_config_dir: domain_config
+
+# 领域配置（当前激活的领域配置文件，位于 domain_config/ 下）
+# domain: petroleum.yaml
+domain: general.yaml
+
+# 嵌入模型
+embedding:
+  model_name: models/paraphrase-multilingual-MiniLM-L12-v2
+  device: cpu                   # cuda 或 cpu
+  offline_mode: false            # true=只用本地缓存，不联网下载
+  hf_endpoint: https://hf-mirror.com   # HuggingFace 镜像（国内加速）
+
+# 实体抽取
+extraction:
+  chunk_target_tokens: 1500      # 分块目标 token 数
+  chunk_min_tokens: 512           # 最小分块 token
+  similarity_threshold: 0.5       # 实体聚类粗排阈值
+  max_concurrent: 4               # 当前文档抽取为串行，此配置暂未使用
+
+# 检索
+retrieval:
+  top_n_paths: 10                 # 重排序后保留的路径数
+  reranker_threshold: null        # 模型原始分数尚未校准，默认只取 Top-N
+  default_hop_depth: 2            # 默认图遍历跳数
+
+# 重排序
+reranker:
+  model_name: models/ms-marco-MiniLM-L-6-v2
+  device: cpu
